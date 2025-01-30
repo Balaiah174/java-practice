@@ -1,24 +1,36 @@
-import java.util.Scanner;
-
-public class Test {
-	public static void main(String[] args) {
-		Scanner s= new Scanner(System.in);
-		System.out.println("enter your mock rating ");
-		double mockRating =s. nextDouble();
-		if(mockRating ==3.5)
-		{
-			System.out.println("you are eligible for placements");
+class Test extends Thread{
+  public void run() {
+	  for(int i=1; i<5;i++) {
+		  System.out.println("child thread running");
+		  try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-		else if(mockRating>3.5)
-			
-		{
-			System.out.println("your also eligible for placements");
-		}
-		else
-		{
-			System.out.println("you are not eligible for placements");
-		}
-	}
-
+	  }
+	  
+  }
+  public static void main(String[] args) {
+	
+Test t=new Test();
+t.setPriority(MAX_PRIORITY);
+try {
+	t.join();
+} catch (InterruptedException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
 }
-  
+
+   t.start();
+   
+   for(int i=1;i<5;i++) {
+	  System.out.println("main thread running");
+	  try {
+		Thread.sleep(2000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} 
+  }
+}
+}
